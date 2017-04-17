@@ -7,6 +7,8 @@ Simple application for payments in charity organizations. Example page available
 * NodeJS >= v7.0
 * Material Design Lite (https://getmdl.io/)
 * React (https://facebook.github.io/react/)
+* Redux
+* Open Payments Cloud
 
 # How to run
 
