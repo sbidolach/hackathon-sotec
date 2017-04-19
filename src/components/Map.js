@@ -1,6 +1,12 @@
-import React from 'react';
-import GoogleMapReact from 'google-map-react';
-import Marker from './Marker';
+import React from 'react'
+import GoogleMapReact from 'google-map-react'
+import { connect } from 'react-redux'
+import { compose } from 'recompose'
+import Marker from './Marker'
+
+const enhance = compose(
+  connect(state => ({ projects: state.projects }))
+)
 
 class Map extends React.Component {
   static defaultProps = {
@@ -40,4 +46,4 @@ class Map extends React.Component {
   }
 }
 
-export default Map
+export default enhance(Map)

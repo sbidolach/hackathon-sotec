@@ -1,33 +1,12 @@
 import React from 'react'
-import axios from 'axios'
 import Map from './Map'
 import Header from './Header'
 import Footer from './Footer'
 import ProjectSideBar from './ProjectSideBar'
 
-class Home extends React.Component {
+const styleMain = {minHeight: '595px'}
 
-  static defaultProps = {
-  }
-
-  constructor(props) {
-      super(props);
-      this.state = {projects: []};
-  }
-
-  componentDidMount() {
-      axios.get('/api/projects')
-      .then((res) => this.setState({ projects: res.data }))
-      .catch((e) => console.log(e))
-  }
-
-  render () {
-
-    const styleMain = {minHeight: '595px'}
-
-    const { projects } = this.state
-
-    return (
+export default ({ projects = {} }) => (
     <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <Header />
       <main className="mdl-layout__content">
@@ -43,10 +22,4 @@ class Home extends React.Component {
         </div>
       </main>
       <Footer />
-    </div>
-    )
-  }
-
-}
-
-export default Home
+    </div>)
