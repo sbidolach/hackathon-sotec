@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 class Header extends React.Component {
 
@@ -11,12 +12,12 @@ class Header extends React.Component {
     return (
     <header className="mdl-layout__header">
       <div className="mdl-layout__header-row" style={styleLogo}>
-        <span className="mdl-layout-title"><a href="/">Charity organizations</a></span>
+        <span className="mdl-layout-title"><Link to={'/'}>Charity organizations</Link></span>
         <div className="mdl-layout-spacer"></div>
         <nav className="mdl-navigation mdl-layout--large-screen-only">
-          <a className="mdl-navigation__link" href="/about">About</a>
-          <a className="mdl-navigation__link" href="/help">Help</a>
-          <a className="mdl-navigation__link" href="/contact">Contact</a>
+          <Link className="mdl-navigation__link" to={'/about'}>About</Link>
+          <Link className="mdl-navigation__link" to={'/help'}>Help</Link>
+          <Link className="mdl-navigation__link" to={'/contact'}>Contact</Link>
         </nav>
       </div>
     </header>

@@ -1,4 +1,6 @@
 import React from 'react'
+import { compose } from 'recompose'
+import { connect } from 'react-redux'
 
 import Header from './Header'
 import Footer from './Footer'
@@ -13,17 +15,19 @@ const menuItems = [
     {label: 'Transaction download', path: ''}
 ]
 
-class Project extends React.Component {
+const enhance = compose(
+  connect((state, props) => ({ project: state.projects.find((v) => v.id == props.match.params.id ) }) ),
+)
 
-  static defaultProps = {
-    markers: []
-  }
+class Project extends React.Component {
 
   render () {
     const styleBorderLeft = {borderLeft: '1px solid rgba(0,0,0,.12)'}
     const styleH3 = {margin: 0}
     const styleH3Right = {margin: 0, textAlign: 'right'}
     const styleTable = {width: '98%', padding: '16px', borderLeft: 0, margin: '0 0 0 16px', borderRight: 0}
+
+    const { project } = this.props
 
     return (
         <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -37,10 +41,10 @@ class Project extends React.Component {
                     <div className="mdl-cell mdl-cell--9-col" style={styleBorderLeft}>
                         <div className="mdl-grid">
                             <div className="mdl-cell mdl-cell--9-col">
-                                <h3 style={styleH3}>Human Rights Watch</h3>
+                                <h3 style={styleH3}>{project.name}</h3>
                             </div>
                             <div className="mdl-cell mdl-cell--3-col" >
-                                <h3 style={styleH3Right}>£14.000</h3>
+                                <h3 style={styleH3Right}>{project.funds}</h3>
                             </div>
                         </div>
                         <table className="mdl-data-table mdl-data-table--selectable" style={styleTable}>
@@ -102,4 +106,4 @@ class Project extends React.Component {
 
 }
 
-export default Project
+export default enhance(Project)

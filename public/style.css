@@ -1,9 +1,11 @@
 .mdl-list .mdl-list__item:hover {
     background-color: #e0e0e0;
+    cursor: pointer;
 }
 
-.mdl-list .mdl-list__item a {
+.mdl-list a {
     color: rgba(0,0,0,.87);
+    text-decoration: none;
 }
 
 .mdl-textfield, .mdl-button {
