@@ -10,15 +10,16 @@ export const getAllProjects = () => dispatch => {
   })
 }
 
-export const addProject = projects => (dispatch, getState) => {
-  const { projects } = getState()
-
-  server.addProject(projects, (ex, projects) => {
-    dispatch({
-      type: types.ADD_PROJECT_SUCCESS,
-      projects
-    })
+export const addProject = (project, cb) => (dispatch, getState) => {
+  server.addProject(project, (ex, project) => {
+    if (!ex) {
+        dispatch({
+          type: types.ADD_PROJECT_SUCCESS,
+          project
+        })
+    }
     // Replace the line above with line below to rollback on failure:
     // dispatch({ type: types.ADD_PROJECT_FAILURE, projects })
+    cb();
   })
 }

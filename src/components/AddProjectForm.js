@@ -2,7 +2,7 @@ import React from 'react'
 import Modal from 'react-modal'
 import { compose } from 'recompose'
 import { reduxForm, Field } from 'redux-form'
-import axios from 'axios'
+import { addProject } from '../actions'
 import Input from './Input'
 import TextField from './TextField'
 
@@ -25,17 +25,16 @@ const enhance = compose(
   reduxForm({
     form: 'addProject',
     onSubmit: (values, dispatch, ownProps) => {
-        axios.post('/api/project', values)
-        .then(() => ownProps.handleClose())
-        .catch((e) => {
-            console.log(e)
-            ownProps.handleClose()
-        })
-    }
-  })
+            dispatch(addProject(values, () => {
+                dispatch(ownProps.reset('addProject'))
+                ownProps.handleClose()
+            }))
+        }
+    })
 )
 
 class AddProjectForm extends React.Component {
+
     render() {
         const { handleClose, open, handleSubmit } = this.props
 

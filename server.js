@@ -23,19 +23,23 @@ const getToken =() => {
   return api.authLogin(uuid(), programmeKey, request)
 }
 
+// TEMPORARY: BEGIN
+var projects = [
+    {id: 1, name: 'Human Rights Watch', description: '', funds: '£14.000', icon: 'functions', lat: 51.522, lng: -0.089},
+    {id: 2, name: 'Do Something', description: '', funds: '£55.000', icon: 'person', lat: 51.52, lng: -0.08},
+    {id: 3, name: 'World Wildlife Fund', description: '', funds: '£22.000', icon: 'star', lat: 51.52, lng: -0.082},
+    {id: 4, name: 'Caritas', description: '', funds: '£5.000', icon: 'star', lat: 51.523, lng: -0.085}
+];
+const getRandomInt = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+// TEMPORARY: END
+
 // create a request for funds
 server.get('/api/projects', async (req, res) => {
   try {
-
-      const projects = [
-          {id: 1, name: 'Human Rights Watch', funds: '£14.000', icon: 'functions', lat: 51.522, lng: -0.089},
-          {id: 2, name: 'Do Something', funds: '£55.000', icon: 'person', lat: 51.52, lng: -0.08},
-          {id: 3, name: 'World Wildlife Fund', funds: '£22.000', icon: 'star', lat: 51.52, lng: -0.082},
-          {id: 4, name: 'Caritas', funds: '£5.000', icon: 'star', lat: 51.523, lng: -0.085}
-      ];
-
-      //getToken().then((data) => console.log(data));
-
       return res.send(projects);
   } catch (err) {
       console.error(err)
@@ -50,8 +54,19 @@ server.get('/*', function (req, res) {
 // create a request for funds
 server.post('/api/project', async (req, res) => {
   try {
-      console.log(req.body);
-      return res.send()
+      // TEMPORARY: BEGIN
+      const project = {
+          id: projects.length + 1,
+          funds: '£0.00',
+          icon: 'star',
+          lat: '51.52' + getRandomInt(0,9),
+          lng: '-0.082' + getRandomInt(0,9),
+          name: req.body.name,
+          description: req.body.description
+      }
+      projects.push(project);
+      // TEMPORARY: END
+      return res.send(project)
   } catch (err) {
       console.error(err)
       return res.send(err)

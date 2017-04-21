@@ -1,6 +1,6 @@
 # Micro payments for charity organizations
 
-Simple application for payments in charity organizations. Example page available on the URL https://sotec-yxjvufqyeo.now.sh
+Simple application for payments in charity organizations. Example page available on the URL https://sotec-agqzqbsugi.now.sh
 
 ## Requirements
 
